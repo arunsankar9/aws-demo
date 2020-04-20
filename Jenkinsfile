@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-       git url: 'https://sebaonline_cl@bitbucket.org/sebaonline_cl/hello_world_maven.git'
+       git url: 'https://github.com/arunsankar9/aws-demo.git'
    }
    stage('Mvn Package'){
      def mvnHome = tool name: 'maven-3', type: 'maven'
@@ -17,7 +17,7 @@ node{
      
      stage('Push image to ECR'){
  
-withDockerRegistry(credentialsId: 'ecr:us-west-2:aws-key', toolName: 'docker', url: 'https://411244477211.dkr.ecr.us-west-2.amazonaws.com/') {
+withDockerRegistry(credentialsId: 'ecr:us-west-2:aws-key', toolName: 'docker', url: 'https://107626280130.dkr.ecr.us-west-2.amazonaws.com/') {
      sh 'docker push 107626280130.dkr.ecr.us-west-2.amazonaws.com/webapp:latest'
 }
         
