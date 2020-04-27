@@ -15,14 +15,20 @@ node{
      sh 'docker tag webapp:latest 107626280130.dkr.ecr.us-west-2.amazonaws.com/webapp:latest'
       }
      
-     stage('Push image to ECR'){
+      stage('Push image to ECR'){
  
-withDockerRegistry(credentialsId: 'ecr:us-west-2:aws-key', toolName: 'docker', url: 'https://107626280130.dkr.ecr.us-west-2.amazonaws.com/') {
-     sh 'docker push 107626280130.dkr.ecr.us-west-2.amazonaws.com/webapp:latest'
-}
-        
- 
-
+      withDockerRegistry(credentialsId: 'ecr:us-west-2:aws-key', toolName: 'docker', url: 'https://107626280130.dkr.ecr.us-west-2.amazonaws.com/') {
+           sh 'docker push 107626280130.dkr.ecr.us-west-2.amazonaws.com/webapp:latest'
+      }
    }
+
+   stage('Deploy into K8s Clusters'){
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-kube', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        sh 'aws sts get-caller-identity'
+        sh 'aws eks --region us-west-2 update-kubeconfig --name dev'
+        sh 'kubectl apply -f manifest.yaml'
+        sh 'kubectl rollout restart deployment/dev-app'
+      }
+    }
 }
 
