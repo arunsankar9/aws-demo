@@ -25,7 +25,7 @@ node{
    stage('Deploy into K8s Clusters'){
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-kube', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
         sh 'aws sts get-caller-identity'
-        sh 'aws eks --region us-west-2 update-kubeconfig --name k8s-dev-cluster'
+        sh 'aws eks --region us-west-2 update-kubeconfig --name dev4'
         sh 'kubectl apply -f manifest.yaml'
         sh 'kubectl rollout restart deployment/webapp'
       }
