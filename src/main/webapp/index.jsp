@@ -10,7 +10,7 @@
       <img src="https://octodex.github.com/images/spidertocat.png" alt="Spidertocat"
            class="img-responsive center-block" style="width:250px"/>
       <h2 class="text-center">Hello Welcome to CI CD pipeline</h2>
-      <p class="text-center">End to end automation build</p>
+      <p class="text-center">End to end automation build - April 30 changes ABC Demo</p>
   </div>
 </body>
 </html>
