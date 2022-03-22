@@ -17,7 +17,7 @@
         spec:
           containers:    
             - name: webappregistry
-              image: 107626280130.dkr.ecr.us-west-2.amazonaws.com/webapp:latest              
+              image: 10762.com/webapp:latest              
               imagePullPolicy: Always
               ports:
                 - containerPort: 8080
