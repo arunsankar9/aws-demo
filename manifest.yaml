@@ -15,6 +15,12 @@
           labels:
             app: webapp
         spec:
+           containers:    
+            - name: webappregistry
+              image: 10762.com/webapp2:latest              
+              imagePullPolicy: Always
+              ports:
+                - containerPort: 8090   
           containers:    
             - name: webappregistry
               image: 10762.com/webapp:latest              
